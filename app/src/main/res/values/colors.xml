@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="beige">#FFE57F</color>
+    <color name="hint_col">#A0522D</color>
+    <color name="green">#66BB6A</color>
+    <color name="amber">#FFBF00</color>
+    <color name="red">#EC407A</color>
+    <color name="addtextcol">#000000</color>
 </resources>
