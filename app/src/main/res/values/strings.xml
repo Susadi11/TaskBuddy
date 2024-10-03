@@ -17,4 +17,12 @@
         <item>Medium</item>
         <item>High</item>
     </string-array>
+    <string-array name="sort_options">
+        <item>Title A-Z</item>
+        <item>Title Z-A</item>
+        <item>Priority Low-High</item>
+        <item>Priority High-Low</item>
+        <item>Nearest Deadline</item>
+        <item>Furthest Deadline</item>
+    </string-array>
 </resources>

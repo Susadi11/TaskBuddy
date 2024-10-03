@@ -2,6 +2,9 @@ package com.example.taskbuddy.view.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.app.AlertDialog
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.taskbuddy.model.database.Task
+import com.example.taskbuddy.model.database.Priority
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,8 +34,8 @@ class MainActivity : AppCompatActivity() {
         taskRecyclerView = findViewById(R.id.taskRecyclerView)
 
         setupRecyclerView()
+        setupSpinner() // Initialize the spinner
 
-        // Initialize ViewModel properly
         taskViewModel = ViewModelProvider(this)[TaskViewModel::class.java]
 
         // Observe changes in the task list
@@ -74,6 +78,42 @@ class MainActivity : AppCompatActivity() {
         taskRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = taskAdapter
+        }
+    }
+
+    private fun setupSpinner() {
+        val sortSpinner = findViewById<Spinner>(R.id.sortBySpinner)
+        val sortOptions = resources.getStringArray(R.array.sort_options)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, sortOptions)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        sortSpinner.adapter = adapter
+
+        sortSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: android.view.View, position: Int, id: Long) {
+                val selectedOption = sortOptions[position]
+                sortTasks(selectedOption)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Do nothing
+            }
+        }
+    }
+
+    private fun sortTasks(selectedOption: String) {
+        taskViewModel.allTasks.observe(this) { tasks: List<Task>? ->
+            tasks?.let {
+                val sortedTasks = when (selectedOption) {
+                    "Title A-Z" -> it.sortedBy { task -> task.taskName }
+                    "Title Z-A" -> it.sortedByDescending { task -> task.taskName }
+                    "Priority Low-High" -> it.sortedBy { task -> task.priority } // Compare Priority directly
+                    "Priority High-Low" -> it.sortedByDescending { task -> task.priority } // Compare Priority directly
+                    "Nearest Deadline" -> it.sortedBy { task -> task.deadline }
+                    "Furthest Deadline" -> it.sortedByDescending { task -> task.deadline }
+                    else -> it
+                }
+                taskAdapter.submitList(sortedTasks)
+            }
         }
     }
 
