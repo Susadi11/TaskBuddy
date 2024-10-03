@@ -11,13 +11,13 @@
         android:id="@+id/addTaskTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/inter_bold"
         android:text="@string/add_task_home"
         android:textSize="48sp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/poppins_bold" />
+        android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/titleTextInputLayout"
@@ -34,9 +34,9 @@
             android:id="@+id/titleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
             android:padding="12dp"
-            android:textSize="16sp"
-            android:fontFamily="@font/poppins_semibold" />
+            android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,7 +62,7 @@
             android:scrollbars="vertical"
             android:inputType="textMultiLine"
             android:gravity="top"
-            android:fontFamily="@font/poppins_semibold" />
+            android:fontFamily="@font/inter_semibold" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,7 +75,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/priority"
         android:textSize="24sp"
-        android:fontFamily="@font/poppins_semibold" />
+        android:fontFamily="@font/inter_semibold" />
 
     <RadioGroup
         android:id="@+id/priorityRadioGroup"
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:text="@string/low_priority"
             android:textSize="16sp"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/inter_semibold"
             app:buttonTint="@color/green" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:text="@string/medium_priority"
             android:textSize="16sp"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/inter_semibold"
             app:buttonTint="@color/amber" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:text="@string/high_priority"
             android:textSize="16sp"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/inter_semibold"
             app:buttonTint="@color/red" />
 
     </RadioGroup>
@@ -127,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/beige"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/inter_semibold"
             android:onClick="showDatePicker"
             android:paddingHorizontal="16dp"
             android:paddingVertical="12dp"
@@ -141,7 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text=""
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/inter_semibold"
             android:textSize="16sp"
             android:paddingVertical="12dp"
             android:paddingHorizontal="16dp" />
@@ -156,7 +156,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:backgroundTint="@color/beige"
-        android:fontFamily="@font/poppins_semibold"
+        android:fontFamily="@font/inter_bold"
         android:onClick="saveTask"
         android:paddingHorizontal="24dp"
         android:paddingVertical="12dp"

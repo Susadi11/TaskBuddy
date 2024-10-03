@@ -16,7 +16,7 @@
             android:id="@+id/taskName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/inter_semibold"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -24,7 +24,7 @@
             android:id="@+id/taskDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/inter_semibold"
             android:textColor="@android:color/darker_gray"
             android:textSize="14sp" />
 
@@ -32,7 +32,7 @@
             android:id="@+id/priorityTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/inter_semibold"
             android:textColor="@android:color/darker_gray"
             android:textSize="14sp" />
 
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/inter_semibold"
             android:textColor="@android:color/darker_gray" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
