@@ -11,7 +11,6 @@ import com.example.taskbuddy.view.viewmodel.TaskViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.recyclerview.widget.RecyclerView
 import android.app.AlertDialog
-import android.content.DialogInterface
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.taskbuddy.model.database.Task
 
@@ -32,9 +31,14 @@ class MainActivity : AppCompatActivity() {
 
         setupRecyclerView()
 
+        // Initialize ViewModel properly
         taskViewModel = ViewModelProvider(this)[TaskViewModel::class.java]
-        taskViewModel.allTasks.observe(this) { tasks ->
-            tasks?.let { taskAdapter.submitList(it) }
+
+        // Observe changes in the task list
+        taskViewModel.allTasks.observe(this) { tasks: List<Task>? ->
+            tasks?.let {
+                taskAdapter.submitList(it)
+            }
         }
 
         // Set OnClickListener for FAB to open AddTaskActivity

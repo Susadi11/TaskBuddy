@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskbuddy.databinding.TaskItemBinding
 import com.example.taskbuddy.model.database.Task
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
@@ -14,6 +16,12 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
         fun bind(task: Task) {
             binding.taskName.text = task.taskName
             binding.taskDescription.text = task.taskDescription
+            binding.priorityTextView.text = task.priority.priorityName
+
+            // Convert deadline timestamp to a readable date
+            val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val deadlineDate = sdf.format(Date(task.deadline))
+            binding.deadlineTextView.text = deadlineDate
         }
     }
 
