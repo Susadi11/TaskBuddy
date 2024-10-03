@@ -10,6 +10,10 @@ import com.example.taskbuddy.view.adapter.TaskAdapter
 import com.example.taskbuddy.view.viewmodel.TaskViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.recyclerview.widget.RecyclerView
+import android.app.AlertDialog
+import android.content.DialogInterface
+import androidx.recyclerview.widget.ItemTouchHelper
+import com.example.taskbuddy.model.database.Task
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,6 +42,27 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AddTaskActivity::class.java)
             startActivity(intent)
         }
+
+        // Implement swipe-to-delete functionality
+        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false // We are not supporting move action
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val task = taskAdapter.getTaskAt(position)
+
+                // Show confirmation dialog before deleting
+                showDeleteConfirmationDialog(task)
+            }
+        })
+
+        itemTouchHelper.attachToRecyclerView(taskRecyclerView)
     }
 
     private fun setupRecyclerView() {
@@ -46,5 +71,23 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = taskAdapter
         }
+    }
+
+    private fun showDeleteConfirmationDialog(task: Task) {
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setMessage("Are you sure you want to delete this task?")
+            .setCancelable(false)
+            .setPositiveButton("Yes") { _, _ ->
+                // Delete task if "Yes" is clicked
+                taskViewModel.delete(task)
+            }
+            .setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+                taskAdapter.notifyDataSetChanged() // Reset the swipe action
+            }
+
+        val alert = dialogBuilder.create()
+        alert.setTitle("Delete Task")
+        alert.show()
     }
 }

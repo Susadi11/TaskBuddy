@@ -33,4 +33,9 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
         this.taskList = tasks
         notifyDataSetChanged()
     }
+
+    // Add this method to get the task at a specific position
+    fun getTaskAt(position: Int): Task {
+        return taskList[position]
+    }
 }
