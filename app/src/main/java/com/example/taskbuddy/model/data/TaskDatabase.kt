@@ -1,4 +1,4 @@
-package com.example.taskbuddy.model.database
+package com.example.taskbuddy.model.data
 
 import android.content.Context
 import androidx.room.Database

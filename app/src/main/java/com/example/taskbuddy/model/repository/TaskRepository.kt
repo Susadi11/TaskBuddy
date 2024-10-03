@@ -1,8 +1,8 @@
 package com.example.taskbuddy.model.repository
 
 import androidx.lifecycle.LiveData
-import com.example.taskbuddy.model.database.Task
-import com.example.taskbuddy.model.database.TaskDao
+import com.example.taskbuddy.model.data.Task
+import com.example.taskbuddy.model.data.TaskDao
 
 class TaskRepository(private val taskDao: TaskDao) {
 

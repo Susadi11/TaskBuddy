@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.taskbuddy.R
 import com.example.taskbuddy.databinding.AddTaskBinding
-import com.example.taskbuddy.model.database.Priority
-import com.example.taskbuddy.model.database.Task
+import com.example.taskbuddy.model.data.Priority
+import com.example.taskbuddy.model.data.Task
 import com.example.taskbuddy.view.viewmodel.TaskViewModel
 import androidx.activity.viewModels
 import kotlinx.coroutines.launch

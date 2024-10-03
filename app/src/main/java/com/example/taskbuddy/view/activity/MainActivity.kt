@@ -15,8 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.recyclerview.widget.RecyclerView
 import android.app.AlertDialog
 import androidx.recyclerview.widget.ItemTouchHelper
-import com.example.taskbuddy.model.database.Task
-import com.example.taskbuddy.model.database.Priority
+import com.example.taskbuddy.model.data.Task
 
 class MainActivity : AppCompatActivity() {
 

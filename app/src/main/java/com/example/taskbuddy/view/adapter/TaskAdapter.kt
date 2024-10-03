@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskbuddy.databinding.TaskItemBinding
-import com.example.taskbuddy.model.database.Task
+import com.example.taskbuddy.model.data.Task
 import java.text.SimpleDateFormat
 import java.util.*
 

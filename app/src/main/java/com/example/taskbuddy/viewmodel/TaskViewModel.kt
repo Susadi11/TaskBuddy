@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.taskbuddy.model.database.Task
-import com.example.taskbuddy.model.database.TaskDatabase
+import com.example.taskbuddy.model.data.Task
+import com.example.taskbuddy.model.data.TaskDatabase
 import com.example.taskbuddy.model.repository.TaskRepository
 import kotlinx.coroutines.launch
 

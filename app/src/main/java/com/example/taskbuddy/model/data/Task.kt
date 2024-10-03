@@ -1,4 +1,4 @@
-package com.example.taskbuddy.model.database
+package com.example.taskbuddy.model.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
