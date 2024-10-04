@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".view.activity.EditTaskActivity">
+
+    <TextView
+        android:id="@+id/editTaskTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Task"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/inter_bold" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/titleTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        app:hintTextColor="@color/beige"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_below="@id/editTaskTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/titleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:inputType="text"
+            android:fontFamily="@font/inter_semibold" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/descriptionTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleTextInputLayout"
+        app:hintTextColor="@color/beige"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/descriptionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:minLines="5"
+            android:maxLines="10"
+            android:layout_marginTop="36dp"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:scrollbars="vertical"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:fontFamily="@font/inter_semibold" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/priorityLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/descriptionTextInputLayout"
+        android:layout_marginTop="16dp"
+        android:text="@string/priority"
+        android:textSize="24sp"
+        android:fontFamily="@font/inter_semibold" />
+
+    <RadioGroup
+        android:id="@+id/priorityRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priorityLabelTextView"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/lowPriorityRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/low_priority"
+            android:textSize="16sp"
+            android:buttonTint="@color/green" />
+
+        <RadioButton
+            android:id="@+id/mediumPriorityRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/medium_priority"
+            android:textSize="16sp"
+            android:buttonTint="@color/amber" />
+
+        <RadioButton
+            android:id="@+id/highPriorityRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/high_priority"
+            android:textSize="16sp"
+            android:buttonTint="@color/red" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/deadlineLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priorityRadioGroup"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/showDatePickerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/beige"
+            android:fontFamily="@font/inter_semibold"
+            android:onClick="showDatePicker"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:text="@string/date_picker_text"
+            android:textColor="@color/addtextcol"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/selectedDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text=""
+            android:fontFamily="@font/inter_semibold"
+            android:textSize="16sp"
+            android:paddingVertical="12dp"
+            android:paddingHorizontal="16dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/saveTaskButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/deadlineLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="94dp"
+        android:backgroundTint="@color/beige"
+        android:fontFamily="@font/inter_bold"
+        android:onClick="saveEditedTask"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="12dp"
+        android:text="@string/save_task"
+        android:textColor="@color/addtextcol"
+        android:textSize="16sp" />
+
+</RelativeLayout>

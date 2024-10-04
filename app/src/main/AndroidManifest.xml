@@ -23,6 +23,8 @@
         </activity>
         <activity android:name=".view.activity.AddTaskActivity">
         </activity>
+        <activity android:name=".view.activity.EditTaskActivity">
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

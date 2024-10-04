@@ -50,8 +50,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Implement swipe-to-delete functionality
-        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+        // Implement swipe-to-edit and swipe-to-delete functionality
+        val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -64,8 +64,22 @@ class MainActivity : AppCompatActivity() {
                 val position = viewHolder.adapterPosition
                 val task = taskAdapter.getTaskAt(position)
 
-                // Show confirmation dialog before deleting
-                showDeleteConfirmationDialog(task)
+                when (direction) {
+                    ItemTouchHelper.LEFT -> {
+                        // Navigate to EditTaskActivity
+                        val intent = Intent(this@MainActivity, EditTaskActivity::class.java)
+                        intent.putExtra("taskId", task.id)
+                        intent.putExtra("taskName", task.taskName)
+                        intent.putExtra("taskDescription", task.taskDescription)
+                        intent.putExtra("taskPriority", task.priority.priorityName)
+                        intent.putExtra("taskDeadline", task.deadline)
+                        startActivity(intent)
+                    }
+                    ItemTouchHelper.RIGHT -> {
+                        // Show confirmation dialog before deleting
+                        showDeleteConfirmationDialog(task)
+                    }
+                }
             }
         })
 
@@ -73,7 +87,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        taskAdapter = TaskAdapter()
+        taskAdapter = TaskAdapter { task -> // Pass clicked task to EditTaskActivity
+            val intent = Intent(this, EditTaskActivity::class.java)
+            intent.putExtra("taskId", task.id)
+            intent.putExtra("taskName", task.taskName)
+            intent.putExtra("taskDescription", task.taskDescription)
+            intent.putExtra("taskPriority", task.priority.priorityName)
+            intent.putExtra("taskDeadline", task.deadline)
+            startActivity(intent)
+        }
         taskRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = taskAdapter

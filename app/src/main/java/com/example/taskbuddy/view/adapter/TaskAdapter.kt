@@ -8,12 +8,12 @@ import com.example.taskbuddy.model.data.Task
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(private val onItemClicked: (Task) -> Unit) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     private var taskList = emptyList<Task>()
 
     class TaskViewHolder(val binding: TaskItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(task: Task) {
+        fun bind(task: Task, onItemClicked: (Task) -> Unit) {
             binding.taskName.text = task.taskName
             binding.taskDescription.text = task.taskDescription
             binding.priorityTextView.text = task.priority.priorityName
@@ -22,6 +22,11 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
             val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             val deadlineDate = sdf.format(Date(task.deadline))
             binding.deadlineTextView.text = deadlineDate
+
+            // Handle click on task item
+            binding.root.setOnClickListener {
+                onItemClicked(task)
+            }
         }
     }
 
@@ -32,7 +37,7 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val currentTask = taskList[position]
-        holder.bind(currentTask)
+        holder.bind(currentTask, onItemClicked)
     }
 
     override fun getItemCount(): Int = taskList.size
@@ -42,7 +47,6 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
         notifyDataSetChanged()
     }
 
-    // Add this method to get the task at a specific position
     fun getTaskAt(position: Int): Task {
         return taskList[position]
     }
